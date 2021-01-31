@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Product {
@@ -15,6 +16,17 @@ public class Product {
 	private String name;
 	private String description;
 	private BigDecimal price;
+	
+	@Transient
+	private String couponCode; //we dont want to persist coupon code so transient
+	
+	
+	public String getCouponCode() {
+		return couponCode;
+	}
+	public void setCouponCode(String couponCode) {
+		this.couponCode = couponCode;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -41,9 +53,9 @@ public class Product {
 	}
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
+				+ ", couponCode=" + couponCode + "]";
 	}
-	
 	
 
 }
